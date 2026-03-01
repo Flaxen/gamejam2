@@ -1,61 +1,60 @@
-[gd_scene load_steps=20 format=3 uid="uid://btpuodkafrhvd"]
+[gd_scene load_steps=19 format=3 uid="uid://bvwnkx0splo04"]
 
-[ext_resource type="Script" uid="uid://btg80wab0rvpr" path="res://scripts/unit.gd" id="1_tb304"]
-[ext_resource type="Script" uid="uid://dgy4y35n0m8lt" path="res://scripts/character_body_2d.gd" id="2_ruro2"]
-[ext_resource type="Texture2D" uid="uid://dl5scsumimiwf" path="res://sprites/archer_idle.png" id="3_e8hdl"]
-[ext_resource type="Texture2D" uid="uid://dmxct3xw5eqns" path="res://sprites/archer_shoot.png" id="4_oee7j"]
-[ext_resource type="Script" uid="uid://ccint3gybwxmp" path="res://scripts/archer.gd" id="5_7gdr1"]
+[ext_resource type="Script" uid="uid://db6uiklhs1yi7" path="res://scripts/character_body_2d.gd" id="1_4vejd"]
+[ext_resource type="Texture2D" uid="uid://dl5scsumimiwf" path="res://sprites/archer_idle.png" id="2_ws0vm"]
+[ext_resource type="Texture2D" uid="uid://dmxct3xw5eqns" path="res://sprites/archer_shoot.png" id="3_rhr3r"]
+[ext_resource type="Script" uid="uid://ccint3gybwxmp" path="res://scripts/archer.gd" id="4_t53lx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07t30"]
 radius = 3.0
 height = 6.28
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bc5hy"]
-atlas = ExtResource("3_e8hdl")
+atlas = ExtResource("2_ws0vm")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcexr"]
-atlas = ExtResource("3_e8hdl")
+atlas = ExtResource("2_ws0vm")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bew2h"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lmflo"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1naa"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kow25"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay1ce"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcnnr"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa4lm"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i728"]
-atlas = ExtResource("4_oee7j")
+atlas = ExtResource("3_rhr3r")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_880y8"]
-atlas = ExtResource("3_e8hdl")
+atlas = ExtResource("2_ws0vm")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcy1h"]
-atlas = ExtResource("3_e8hdl")
+atlas = ExtResource("2_ws0vm")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0noyg"]
@@ -112,28 +111,25 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Unit" type="Node2D"]
-script = ExtResource("1_tb304")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 2
 input_pickable = true
 motion_mode = 1
-script = ExtResource("2_ruro2")
+script = ExtResource("1_4vejd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.86)
 shape = SubResource("CapsuleShape2D_07t30")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_0noyg")
 animation = &"idle"
 autoplay = "idle"
-script = ExtResource("5_7gdr1")
+script = ExtResource("4_t53lx")
 
-[node name="Line2D" type="Line2D" parent="CharacterBody2D"]
+[node name="Line2D" type="Line2D" parent="."]
 visible = false
 position = Vector2(0, -0.59)
 points = PackedVector2Array(-1, 4, 1, 4, 2, 3.32, 1, 2.59, -1, 2.59, -2, 3.32)
@@ -144,4 +140,4 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[connection signal="input_event" from="CharacterBody2D" to="." method="_on_character_body_2d_input_event"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

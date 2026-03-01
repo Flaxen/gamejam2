@@ -3,8 +3,17 @@ extends Node
 var marked_troops = []
 var something_else_entered = false
 
+var food = 0
+var wood = 0
+var stone = 0
+var iron = 0
+var gold = 0
+
+@export var worker_price = 50
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	pass # Replace with function body.
 
 
@@ -13,7 +22,7 @@ func _process(_delta: float) -> void:
 	
 	pass
 
-func add_unit(unit:Node2D):
+func add_unit(unit:CharacterBody2D):
 	marked_troops = [unit]
 	#print("added unit")
 	unit.add()
@@ -34,12 +43,7 @@ func _on_map_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) ->
 			#print("map right clicked")
 			for t in marked_troops:
 				t.goto()
-			
-			
-func _on_unit_pressed(unit:Node2D) -> void:
-	#unit pressed once. only add this one
-	#remove_all_units()
-	add_unit(unit)
+	
 
 func _on_character_body_2d_mouse_entered() -> void:
 	something_else_entered = true
@@ -66,9 +70,43 @@ func _on_ui_mark_troops(points) -> void:
 					Vector2(abs(points[0].x-points[2].x), abs(points[0].y-points[2].y)))
 
 	for c in get_children():
-		if rect1.has_point(c.get_child(0).position):
-			print("marked")
+		if rect1.has_point(c.position):
+			#print("marked")
 			c.add()
 			marked_troops.append(c)
-		
-		
+
+
+func _on_character_body_2d_pressed(unit: CharacterBody2D) -> void:
+	#unit pressed once. only add this one
+	add_unit(unit)
+
+signal update_food(food:int)
+signal build_worker
+func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed and something_else_entered == false:
+			#create worker if afford
+			if food >= worker_price:
+				print("worker!")
+				update_food.emit(food-worker_price)
+				build_worker.emit()
+			
+
+
+
+
+func _on_player_1_increase_food(n: int) -> void:
+	food = n
+
+
+func _on_player_1_increase_gold(n: int) -> void:
+	gold = n
+
+func _on_player_1_increase_iron(n: int) -> void:
+	iron = n
+
+func _on_player_1_increase_stone(n: int) -> void:
+	stone = n
+
+func _on_player_1_increase_wood(n: int) -> void:
+	wood = n
