@@ -29,9 +29,7 @@ func _physics_process(_delta):
 		$AnimatedSprite2D.play("walk")
 		#print ("moving w velocity, ", $CharacterBody2D.velocity)
 		move_and_slide()
-		print(target)
-		print(velocity)
-		print(position.distance_to(target))
+		
 	else:
 		$AnimatedSprite2D.play("idle")
 

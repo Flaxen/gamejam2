@@ -25,13 +25,13 @@ func _on_map_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) ->
 	if event is InputEventMouseButton:
 		
 		if event.button_index == 1 and event.is_pressed():
-			print("constant press")
+			#print("constant press")
 			$Line2D.visible = true
 			pressed = true
 			start_pos = get_global_mouse_position()
 			
 		if event.button_index == 1 and event.is_released() and pressed == true:
-			print("stop press")
+			#print("stop press")
 			$Line2D.visible = false
 			pressed = false
 			mark_troops.emit($Line2D.points)
