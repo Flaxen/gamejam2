@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://cdorh3w62fwsa"]
+[gd_scene load_steps=90 format=4 uid="uid://cdorh3w62fwsa"]
 
 [ext_resource type="Texture2D" uid="uid://d3cmqkxouhm65" path="res://sprites/grass_godot.png" id="1_lwogq"]
 [ext_resource type="Script" uid="uid://brymljy674en7" path="res://scripts/camera_2d.gd" id="1_shna5"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://3hm1cyqa0p5a" path="res://scripts/terrain.gd" id="5_dabxs"]
 [ext_resource type="Script" uid="uid://nacpmp6xu4ef" path="res://scripts/troops.gd" id="7_nmw0x"]
 [ext_resource type="Texture2D" uid="uid://cer0wp8pjvhka" path="res://sprites/fields.png" id="7_shna5"]
+[ext_resource type="Script" uid="uid://dof5vuo3pucyl" path="res://scripts/farm.gd" id="10_o1naa"]
+[ext_resource type="PackedScene" uid="uid://nuuy37u6g3sj" path="res://scenes/worker.tscn" id="11_kow25"]
 [ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/character_body_2d.tscn" id="11_nmw0x"]
 [ext_resource type="Script" uid="uid://dp0v5fbyqd8ge" path="res://scripts/collision_shape_2d.gd" id="12_07t30"]
 [ext_resource type="Texture2D" uid="uid://56dlrej03bfs" path="res://sprites/ui.png" id="12_dabxs"]
@@ -839,7 +841,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2i728"]
-font_size = 13
+font_size = 12
 outline_size = 1
 
 [node name="Node2D" type="Node2D"]
@@ -931,6 +933,7 @@ sprite_frames = SubResource("SpriteFrames_880y8")
 frame_progress = 0.559744
 
 [node name="farm" type="Area2D" parent="player1/Buildings"]
+script = ExtResource("10_o1naa")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player1/Buildings/farm"]
 polygon = PackedVector2Array(1402, 1653, 1423, 1665, 1445, 1655, 1445, 1647, 1426, 1635, 1401, 1646)
@@ -947,6 +950,9 @@ position = Vector2(1423, 1716)
 [node name="CharacterBody2D3" parent="player1/troops" instance=ExtResource("11_nmw0x")]
 position = Vector2(1443, 1705)
 
+[node name="worker" parent="player1/troops" instance=ExtResource("11_kow25")]
+position = Vector2(1456, 1723)
+
 [node name="UI" type="Node2D" parent="player1"]
 script = ExtResource("15_bc5hy")
 
@@ -961,9 +967,9 @@ default_color = Color(0, 1, 0, 1)
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1063.57
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 
 [node name="Ui" type="Sprite2D" parent="CanvasLayer/Control"]
@@ -971,48 +977,52 @@ position = Vector2(573.715, 11)
 texture = ExtResource("12_dabxs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_direction = 2
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_right = 15.0
-offset_bottom = 21.025
+offset_right = 51.0
+offset_bottom = 17.0
 
 [node name="food" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
-layout_direction = 2
+layout_direction = 3
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.0
 text = "0"
 label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
 script = ExtResource("14_o1naa")
 
 [node name="wood" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
-layout_direction = 2
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 8
 text = "0"
 label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
 script = ExtResource("15_kow25")
 
 [node name="stone" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
-layout_direction = 2
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 8
 text = "0"
 label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
 script = ExtResource("16_ay1ce")
 
 [node name="iron" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
-layout_direction = 2
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 8
 text = "0"
 label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
 script = ExtResource("17_rcnnr")
 
 [node name="gold" type="Label" parent="CanvasLayer/Control/HBoxContainer"]
-layout_direction = 2
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 8
 text = "0"
 label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
@@ -1032,5 +1042,6 @@ script = ExtResource("18_pa4lm")
 [connection signal="input_event" from="player1/Map/Terrain/iron" to="player1" method="_on_iron_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/gold" to="player1" method="_on_gold_input_event"]
 [connection signal="input_event" from="player1/Buildings/farm" to="player1/troops" method="_on_farm_input_event"]
+[connection signal="build_worker" from="player1/troops" to="player1/Buildings/farm" method="_on_troops_build_worker"]
 [connection signal="update_food" from="player1/troops" to="player1" method="_on_troops_update_food"]
 [connection signal="mark_troops" from="player1/UI" to="player1/troops" method="_on_ui_mark_troops"]

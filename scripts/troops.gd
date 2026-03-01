@@ -81,7 +81,7 @@ func _on_character_body_2d_pressed(unit: CharacterBody2D) -> void:
 	add_unit(unit)
 
 signal update_food(food:int)
-signal build_worker
+signal build_worker(troops:Node2D)
 func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
@@ -89,7 +89,7 @@ func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 			if food >= worker_price:
 				print("worker!")
 				update_food.emit(food-worker_price)
-				build_worker.emit()
+				build_worker.emit(self)
 			
 
 

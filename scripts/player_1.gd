@@ -59,6 +59,6 @@ func _on_gold_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 			increase_gold.emit(gold)
 
 
-func _on_troops_update_food(food: int) -> void:
-	self.food = food
+func _on_troops_update_food(food_new: int) -> void:
+	food = food_new
 	increase_food.emit(food)

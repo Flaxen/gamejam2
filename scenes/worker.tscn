@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://nuuy37u6g3sj"]
+
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/character_body_2d.tscn" id="1_4n0ys"]
+[ext_resource type="Texture2D" uid="uid://4twy5f4j6gr2" path="res://sprites/worker_idle.png" id="2_sb737"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwx2a"]
+atlas = ExtResource("2_sb737")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_leqb2"]
+atlas = ExtResource("2_sb737")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ec5k7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwx2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leqb2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwx2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leqb2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwx2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_leqb2")
+}],
+"loop": true,
+"name": &"work",
+"speed": 10.0
+}]
+
+[node name="CharacterBody2D" instance=ExtResource("1_4n0ys")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_ec5k7")
