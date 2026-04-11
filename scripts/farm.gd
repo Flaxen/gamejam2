@@ -1,8 +1,10 @@
 extends Area2D
 
-var worker_scene
+@export var worker_scene: PackedScene
+@export var unit_grouping: String
+
 func _ready() -> void:
-	worker_scene = preload("res://scenes/worker.tscn")
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -12,6 +14,6 @@ signal spawning_done
 func _on_troops_build_worker(troops:Node) -> void:
 	var worker_instance = worker_scene.instantiate()
 	worker_instance.position = $CollisionPolygon2D.global_position
-	worker_instance.add_to_group("workers")
+	worker_instance.add_to_group(unit_grouping)
 	troops.add_child(worker_instance)
 	spawning_done.emit(worker_instance)

@@ -10,6 +10,7 @@ var iron = 0
 var gold = 0
 
 @export var worker_price = 50
+@export var swordsman_price = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -111,8 +112,16 @@ func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 				print("worker!")
 				update_food.emit(food-worker_price)
 				build_worker.emit(self)
-			
-
+				
+signal build_swordsman(troops:Node)
+func _on_barrack_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed and something_else_entered == false:
+			#create worker if afford
+			if food >= swordsman_price:
+				print("swordsman!")
+				update_food.emit(food-worker_price)
+				build_swordsman.emit(self)
 
 
 
@@ -140,4 +149,8 @@ func _on_farm_spawning_done(unit:CharacterBody2D) -> void:
 	unit.mouse_exited.connect(self._on_character_body_2d_mouse_exited.bind())
 	
 	
+	pass # Replace with function body.
+
+
+func _on_barrack_spawning_done() -> void:
 	pass # Replace with function body.
