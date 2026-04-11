@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var marked_troops = []
 var something_else_entered = false
@@ -21,6 +21,16 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	pass
+	
+func get_troop_coordinates(n:int, coordinate:Vector2, _troop_diameter:int=5) -> Array:
+	var square_size = sqrt(n)+1
+	var coords = []
+	
+	for i in range(square_size):
+		for j in range(square_size):
+			var coord = coordinate + Vector2(_troop_diameter*i, _troop_diameter*j)
+			coords.append(coord)
+	return coords
 
 func add_unit(unit:CharacterBody2D):
 	marked_troops = [unit]
@@ -41,8 +51,12 @@ func _on_map_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) ->
 			
 		if event.button_index == 2 and event.pressed:
 			#print("map right clicked")
-			for t in marked_troops:
-				t.goto()
+			var coordinate = get_global_mouse_position()
+			print(coordinate)
+			var coords = get_troop_coordinates(len(marked_troops), coordinate)
+			 
+			for t in range(len(marked_troops)):
+				marked_troops[t].goto(coords[t])
 	
 
 func _on_character_body_2d_mouse_entered() -> void:

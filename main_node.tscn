@@ -939,21 +939,21 @@ script = ExtResource("10_o1naa")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player1/Buildings/farm"]
 polygon = PackedVector2Array(0, 0, -10, -3, -21, -11, -21, -21, -7, -27, 5, -26, 22, -15, 21, -8)
 
-[node name="troops" type="Node" parent="player1"]
+[node name="troops2d" type="Node2D" parent="player1"]
 script = ExtResource("7_nmw0x")
-worker_price = 5
+worker_price = 1
 
-[node name="CharacterBody2D" parent="player1/troops" instance=ExtResource("11_nmw0x")]
-position = Vector2(1417, 1695)
+[node name="CharacterBody2D" parent="player1/troops2d" instance=ExtResource("11_nmw0x")]
+position = Vector2(1499, 1707)
 
-[node name="CharacterBody2D2" parent="player1/troops" instance=ExtResource("11_nmw0x")]
-position = Vector2(1423, 1716)
+[node name="CharacterBody2D2" parent="player1/troops2d" instance=ExtResource("11_nmw0x")]
+position = Vector2(1517, 1698)
 
-[node name="CharacterBody2D3" parent="player1/troops" instance=ExtResource("11_nmw0x")]
-position = Vector2(1443, 1705)
+[node name="CharacterBody2D3" parent="player1/troops2d" instance=ExtResource("11_nmw0x")]
+position = Vector2(1508, 1719)
 
-[node name="worker" parent="player1/troops" instance=ExtResource("11_kow25")]
-position = Vector2(1456, 1723)
+[node name="CharacterBody2D4" parent="player1/troops2d" instance=ExtResource("11_kow25")]
+position = Vector2(1523, 1712)
 
 [node name="UI" type="Node2D" parent="player1"]
 script = ExtResource("15_bc5hy")
@@ -1025,24 +1025,20 @@ label_settings = SubResource("LabelSettings_2i728")
 horizontal_alignment = 2
 script = ExtResource("14_o1naa")
 
-[connection signal="increase_food" from="player1" to="player1/troops" method="_on_player_1_increase_food"]
 [connection signal="increase_food" from="player1" to="CanvasLayer/Control/HBoxContainer/food" method="_on_player_1_increase_food"]
+[connection signal="increase_food" from="player1" to="player1/troops2d" method="_on_player_1_increase_food"]
 [connection signal="increase_gold" from="player1" to="CanvasLayer/Control/HBoxContainer/gold" method="_on_player_1_increase_gold"]
 [connection signal="increase_iron" from="player1" to="CanvasLayer/Control/HBoxContainer/iron" method="_on_player_1_increase_iron"]
 [connection signal="increase_stone" from="player1" to="CanvasLayer/Control/HBoxContainer/stone" method="_on_player_1_increase_stone"]
 [connection signal="increase_wood" from="player1" to="CanvasLayer/Control/HBoxContainer/wood" method="_on_player_1_increase_wood"]
-[connection signal="input_event" from="player1/Map/Ground/map" to="player1/troops" method="_on_map_input_event"]
 [connection signal="input_event" from="player1/Map/Ground/map" to="player1/UI" method="_on_map_input_event"]
+[connection signal="input_event" from="player1/Map/Ground/map" to="player1/troops2d" method="_on_map_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/berries" to="player1" method="_on_berries_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/wood" to="player1" method="_on_wood_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/stone" to="player1" method="_on_stone_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/iron" to="player1" method="_on_iron_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/gold" to="player1" method="_on_gold_input_event"]
-[connection signal="input_event" from="player1/Buildings/farm" to="player1/troops" method="_on_farm_input_event"]
-[connection signal="build_worker" from="player1/troops" to="player1/Buildings/farm" method="_on_troops_build_worker"]
-[connection signal="update_food" from="player1/troops" to="player1" method="_on_troops_update_food"]
-[connection signal="pressed" from="player1/troops/CharacterBody2D" to="player1/troops" method="_on_character_body_2d_pressed"]
-[connection signal="pressed" from="player1/troops/CharacterBody2D2" to="player1/troops" method="_on_character_body_2d_pressed"]
-[connection signal="pressed" from="player1/troops/CharacterBody2D3" to="player1/troops" method="_on_character_body_2d_pressed"]
-[connection signal="pressed" from="player1/troops/worker" to="player1/troops" method="_on_character_body_2d_pressed"]
-[connection signal="mark_troops" from="player1/UI" to="player1/troops" method="_on_ui_mark_troops"]
+[connection signal="input_event" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_input_event"]
+[connection signal="build_worker" from="player1/troops2d" to="player1/Buildings/farm" method="_on_troops_build_worker"]
+[connection signal="update_food" from="player1/troops2d" to="player1" method="_on_troops_update_food"]
+[connection signal="mark_troops" from="player1/UI" to="player1/troops2d" method="_on_ui_mark_troops"]
