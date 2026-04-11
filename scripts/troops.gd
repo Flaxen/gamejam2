@@ -39,6 +39,7 @@ func add_unit(unit:CharacterBody2D):
 
 
 func remove_all_units():
+	print("removing all troops")
 	for t in marked_troops:
 		t.remove()
 		marked_troops = []
@@ -75,7 +76,6 @@ func find_top_left(points: Array) -> Vector2:
 		
 	return Vector2(min_x, min_y)
 
-
 func _on_ui_mark_troops(points) -> void:
 	#mark all troops in rect
 	#remove_all_units()
@@ -93,6 +93,13 @@ func _on_ui_mark_troops(points) -> void:
 func _on_character_body_2d_pressed(unit: CharacterBody2D) -> void:
 	#unit pressed once. only add this one
 	add_unit(unit)
+	
+func _on_character_body_2d_double_pressed(unit: CharacterBody2D) -> void:
+	var rect2 = get_parent().get_parent().get_child(0).get_rect()
+	for c in get_children():
+		if rect2.has_point(c.global_position) and unit.get_groups() == c.get_groups():
+			c.add()
+			marked_troops.append(c)
 
 signal update_food(food:int)
 signal build_worker(troops:Node)
@@ -124,3 +131,13 @@ func _on_player_1_increase_stone(n: int) -> void:
 
 func _on_player_1_increase_wood(n: int) -> void:
 	wood = n
+
+
+func _on_farm_spawning_done(unit:CharacterBody2D) -> void:
+	unit.double_pressed.connect(self._on_character_body_2d_double_pressed.bind())
+	unit.pressed.connect(self._on_character_body_2d_pressed.bind())
+	unit.mouse_entered.connect(self._on_character_body_2d_mouse_entered.bind())
+	unit.mouse_exited.connect(self._on_character_body_2d_mouse_exited.bind())
+	
+	
+	pass # Replace with function body.

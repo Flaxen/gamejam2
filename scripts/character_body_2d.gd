@@ -4,7 +4,7 @@ var target = global_position
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	target = global_position
-	print("character pos: ", global_position)
+	
 	pass # Replace with function body.
 
 
@@ -43,6 +43,8 @@ func remove():
 	$Line2D.visible = false
 
 signal pressed(unit:CharacterBody2D)
+signal double_pressed(unit:CharacterBody2D)
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 
@@ -53,5 +55,5 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			pressed.emit(self)
 			
 		if event.double_click:
-			#print("double clicked")
-			pass
+			print("double pressed")
+			double_pressed.emit(self)

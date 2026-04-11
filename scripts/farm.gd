@@ -8,11 +8,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
+signal spawning_done
 func _on_troops_build_worker(troops:Node) -> void:
 	var worker_instance = worker_scene.instantiate()
 	worker_instance.position = $CollisionPolygon2D.global_position
-	print(worker_instance.position)
+	worker_instance.add_to_group("workers")
 	troops.add_child(worker_instance)
-	print("spawned worker at ", worker_instance.position)
-	print("CollisionPos ", $CollisionPolygon2D.global_position)
+	spawning_done.emit(worker_instance)

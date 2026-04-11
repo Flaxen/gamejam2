@@ -42,3 +42,8 @@ func _process(_delta: float) -> void:
 			zoom = zoom - Vector2(scroll_speed, scroll_speed)
 
 	pass
+
+func get_rect() -> Rect2:
+	var pos = position
+	var half_size = get_viewport_rect().size * 0.5
+	return Rect2(pos - half_size, pos + half_size)
