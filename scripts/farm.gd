@@ -10,7 +10,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-signal spawning_done
+signal spawning_done(unit)
 func _on_troops_build_worker(troops:Node) -> void:
 	var worker_instance = worker_scene.instantiate()
 	worker_instance.position = $CollisionPolygon2D.global_position

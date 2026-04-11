@@ -1141,7 +1141,7 @@ region_rect = Rect2(384, 0, 64, 44)
 [connection signal="input_event" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_input_event"]
 [connection signal="spawning_done" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_spawning_done"]
 [connection signal="input_event" from="player1/Buildings/barrack" to="player1/troops2d" method="_on_barrack_input_event"]
-[connection signal="spawning_done" from="player1/Buildings/barrack" to="player1/troops2d" method="_on_barrack_spawning_done"]
+[connection signal="spawning_done" from="player1/Buildings/barrack" to="player1/troops2d" method="_on_farm_spawning_done"]
 [connection signal="build_swordsman" from="player1/troops2d" to="player1/Buildings/barrack" method="_on_troops_build_swordsman"]
 [connection signal="build_worker" from="player1/troops2d" to="player1/Buildings/farm" method="_on_troops_build_worker"]
 [connection signal="update_food" from="player1/troops2d" to="player1" method="_on_troops_update_food"]

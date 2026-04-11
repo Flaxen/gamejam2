@@ -150,7 +150,3 @@ func _on_farm_spawning_done(unit:CharacterBody2D) -> void:
 	
 	
 	pass # Replace with function body.
-
-
-func _on_barrack_spawning_done() -> void:
-	pass # Replace with function body.
