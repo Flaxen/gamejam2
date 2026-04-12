@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=4 uid="uid://cdorh3w62fwsa"]
+[gd_scene load_steps=98 format=4 uid="uid://cdorh3w62fwsa"]
 
 [ext_resource type="Texture2D" uid="uid://d3cmqkxouhm65" path="res://sprites/grass_godot.png" id="1_lwogq"]
 [ext_resource type="Script" uid="uid://brymljy674en7" path="res://scripts/camera_2d.gd" id="1_shna5"]
@@ -11,14 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://cer0wp8pjvhka" path="res://sprites/fields.png" id="7_shna5"]
 [ext_resource type="Script" uid="uid://cmfn8bk8kx2v1" path="res://scripts/buildings.gd" id="9_2i728"]
 [ext_resource type="Script" uid="uid://dof5vuo3pucyl" path="res://scripts/farm.gd" id="10_o1naa"]
+[ext_resource type="PackedScene" uid="uid://5xdqwf1tg7w6" path="res://scenes/buildings/spear_tower.tscn" id="11_hlqug"]
 [ext_resource type="PackedScene" uid="uid://nuuy37u6g3sj" path="res://scenes/worker.tscn" id="11_kow25"]
-[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/character_body_2d.tscn" id="11_nmw0x"]
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/archer.tscn" id="11_nmw0x"]
 [ext_resource type="Script" uid="uid://dp0v5fbyqd8ge" path="res://scripts/collision_shape_2d.gd" id="12_07t30"]
 [ext_resource type="Texture2D" uid="uid://56dlrej03bfs" path="res://sprites/ui.png" id="12_dabxs"]
-[ext_resource type="PackedScene" uid="uid://dsvpmtxj4fhs8" path="res://scenes/barrack.tscn" id="13_0noyg"]
+[ext_resource type="PackedScene" uid="uid://da2c0pa2wddkq" path="res://scenes/buildings/archer_range.tscn" id="12_qhy6v"]
+[ext_resource type="PackedScene" uid="uid://dsvpmtxj4fhs8" path="res://scenes/buildings/barrack.tscn" id="13_0noyg"]
+[ext_resource type="PackedScene" uid="uid://3wjn443sxy36" path="res://scenes/buildings/stables.tscn" id="13_6srk1"]
+[ext_resource type="PackedScene" uid="uid://bl0uns1is12wn" path="res://scenes/buildings/tavern.tscn" id="14_6srk1"]
 [ext_resource type="Script" uid="uid://c2b0mowdmxhck" path="res://scripts/food_count.gd" id="14_o1naa"]
 [ext_resource type="Script" uid="uid://8c1t0agvbrp3" path="res://scripts/ui.gd" id="15_bc5hy"]
 [ext_resource type="Script" uid="uid://jv8sleypen3d" path="res://scripts/wood.gd" id="15_kow25"]
+[ext_resource type="PackedScene" uid="uid://xf4jjpg46gpd" path="res://scenes/buildings/castle.tscn" id="15_o6iju"]
 [ext_resource type="Script" uid="uid://cgw0bnypxkcaj" path="res://scripts/stone_count.gd" id="16_ay1ce"]
 [ext_resource type="Script" uid="uid://5o5e2g3sgfh5" path="res://scripts/iron_count.gd" id="17_rcnnr"]
 [ext_resource type="Script" uid="uid://dqxlwykhhxi8n" path="res://scripts/gold_count.gd" id="18_pa4lm"]
@@ -930,7 +935,7 @@ tile_set = SubResource("TileSet_nmw0x")
 [node name="Buildings" type="Node2D" parent="player1"]
 position = Vector2(2000, 2000)
 script = ExtResource("9_2i728")
-building_scenes = Array[PackedScene]([ExtResource("13_0noyg")])
+building_scenes = Array[PackedScene]([ExtResource("13_0noyg"), ExtResource("11_hlqug"), ExtResource("12_qhy6v"), ExtResource("13_6srk1"), ExtResource("14_6srk1"), ExtResource("13_0noyg"), ExtResource("15_o6iju")])
 
 [node name="ghost" type="Sprite2D" parent="player1/Buildings"]
 visible = false
@@ -954,9 +959,6 @@ unit_grouping = "workers"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player1/Buildings/farm"]
 polygon = PackedVector2Array(0, 0, -10, -3, -21, -11, -21, -21, -7, -27, 5, -26, 22, -15, 21, -8)
-
-[node name="barrack" parent="player1/Buildings" instance=ExtResource("13_0noyg")]
-position = Vector2(-620, -383)
 
 [node name="troops2d" type="Node2D" parent="player1"]
 script = ExtResource("7_nmw0x")
@@ -1147,9 +1149,6 @@ region_rect = Rect2(320, -2, 64, 44)
 [connection signal="input_event" from="player1/Map/Terrain/gold" to="player1" method="_on_gold_input_event"]
 [connection signal="input_event" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_input_event"]
 [connection signal="spawning_done" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_spawning_done"]
-[connection signal="input_event" from="player1/Buildings/barrack" to="player1/troops2d" method="_on_barrack_input_event"]
-[connection signal="spawning_done" from="player1/Buildings/barrack" to="player1/troops2d" method="_on_farm_spawning_done"]
-[connection signal="build_swordsman" from="player1/troops2d" to="player1/Buildings/barrack" method="_on_troops_build_swordsman"]
 [connection signal="build_worker" from="player1/troops2d" to="player1/Buildings/farm" method="_on_troops_build_worker"]
 [connection signal="update_food" from="player1/troops2d" to="player1" method="_on_troops_update_food"]
 [connection signal="double_pressed" from="player1/troops2d/CharacterBody2D" to="player1/troops2d" method="_on_character_body_2d_double_pressed"]

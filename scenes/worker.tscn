@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://nuuy37u6g3sj"]
 
-[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/character_body_2d.tscn" id="1_4n0ys"]
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/archer.tscn" id="1_4n0ys"]
 [ext_resource type="Texture2D" uid="uid://4twy5f4j6gr2" path="res://sprites/worker_idle.png" id="2_sb737"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwx2a"]
