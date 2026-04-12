@@ -2,6 +2,16 @@ extends Node2D
 
 @export var building_scenes: Array[PackedScene]
 
+@export var barrack_price = [0,10,0,0]
+@export var spear_tower_price = [0,10,5,0]
+@export var archer_range_price = [0,20,2,0]
+@export var stable_price = [10,10,0,0]
+@export var castle_price = [10,10,10,0]
+@export var tavern_price = [10,10,2,2]
+@export var farm_price = [10,0,0,0]
+
+var building_prices = [barrack_price, spear_tower_price, archer_range_price, stable_price, tavern_price, farm_price, castle_price]
+
 var scene_to_build = null
 
 func _ready() -> void:
@@ -23,9 +33,11 @@ func _on_map_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) ->
 		$ghost.visible = false
 
 func _on_button_pressed() -> void:
-	scene_to_build = building_scenes[0]
-	$ghost.region_rect = Rect2(3*64, 0, 64, 44)
-	$ghost.visible = true
+	var resources = get_parent().resources
+	if resources > building_prices[0]:
+		scene_to_build = building_scenes[0]
+		$ghost.region_rect = Rect2(3*64, 0, 64, 44)
+		$ghost.visible = true
 
 func _on_button_2_pressed() -> void:
 	scene_to_build = building_scenes[1]

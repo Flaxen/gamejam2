@@ -6,6 +6,9 @@ var stone = 0
 var iron = 0
 var gold = 0
 # Called when the node enters the scene tree for the first time.
+var resources = [food,wood,stone,iron,gold]
+
+
 func _ready() -> void:
 	pass # Replace with function body.
 

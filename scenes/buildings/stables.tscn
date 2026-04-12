@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://3wjn443sxy36"]
 
-[ext_resource type="Script" uid="uid://cwdiflvy0qdaw" path="res://scripts/stables.gd" id="1_chg7i"]
-[ext_resource type="PackedScene" uid="uid://dd233xh6xgpm6" path="res://scenes/horseman.tscn" id="2_nrrxi"]
+[ext_resource type="Script" uid="uid://cwdiflvy0qdaw" path="res://scripts/buildings/stables.gd" id="1_chg7i"]
+[ext_resource type="PackedScene" uid="uid://dd233xh6xgpm6" path="res://scenes/units/horseman.tscn" id="2_nrrxi"]
 [ext_resource type="Texture2D" uid="uid://dea41hya1x83k" path="res://sprites/buildings.png" id="3_ydsf3"]
 
 [node name="building" type="Area2D"]

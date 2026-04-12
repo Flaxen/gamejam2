@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://5xdqwf1tg7w6"]
 
-[ext_resource type="Script" uid="uid://dftu1uahtensm" path="res://scripts/spear_tower.gd" id="1_xg3k2"]
-[ext_resource type="PackedScene" uid="uid://3t2qaarl0p3y" path="res://scenes/spearman.tscn" id="2_e1osr"]
+[ext_resource type="Script" uid="uid://dftu1uahtensm" path="res://scripts/buildings/spear_tower.gd" id="1_xg3k2"]
+[ext_resource type="PackedScene" uid="uid://3t2qaarl0p3y" path="res://scenes/units/spearman.tscn" id="2_e1osr"]
 [ext_resource type="Texture2D" uid="uid://dea41hya1x83k" path="res://sprites/buildings.png" id="3_kx0oc"]
 
 [node name="building" type="Area2D"]

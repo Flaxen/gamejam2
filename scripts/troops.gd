@@ -11,6 +11,9 @@ var gold = 0
 
 @export var worker_price = 50
 @export var swordsman_price = 50
+@export var archer_price = 50
+@export var spearman_price = 50
+@export var horseman_price = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -118,9 +121,9 @@ func _on_archer_range_input_event(_viewport: Node, event: InputEvent, _shape_idx
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
-			if food >= swordsman_price:
+			if food >= archer_price:
 				print("archer!")
-				update_food.emit(food-swordsman_price)
+				update_food.emit(food-archer_price)
 				build_archer.emit(self)
 
 signal build_swordsman(troops:Node)
@@ -138,9 +141,9 @@ func _on_spear_tower_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
-			if food >= swordsman_price:
+			if food >= spearman_price:
 				print("spearman!")
-				update_food.emit(food-swordsman_price)
+				update_food.emit(food-spearman_price)
 				build_spearman.emit(self)
 
 signal build_horseman(troops:Node)
@@ -148,9 +151,9 @@ func _on_stables_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
-			if food >= swordsman_price:
+			if food >= horseman_price:
 				print("horseman!")
-				update_food.emit(food-swordsman_price)
+				update_food.emit(food-horseman_price)
 				build_horseman.emit(self)
 
 func _on_player_1_increase_food(n: int) -> void:

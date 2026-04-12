@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl0uns1is12wn"]
 
-[ext_resource type="Script" uid="uid://6mk7uhj67w11" path="res://scripts/barrack.gd" id="1_8dirj"]
-[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/archer.tscn" id="2_gwbas"]
+[ext_resource type="Script" uid="uid://6mk7uhj67w11" path="res://scripts/buildings/barrack.gd" id="1_8dirj"]
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/units/archer.tscn" id="2_gwbas"]
 [ext_resource type="Texture2D" uid="uid://dea41hya1x83k" path="res://sprites/buildings.png" id="3_yyr65"]
 
 [node name="building" type="Area2D"]

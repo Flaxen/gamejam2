@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://nacpmp6xu4ef" path="res://scripts/troops.gd" id="7_nmw0x"]
 [ext_resource type="Texture2D" uid="uid://cer0wp8pjvhka" path="res://sprites/fields.png" id="7_shna5"]
 [ext_resource type="Script" uid="uid://cmfn8bk8kx2v1" path="res://scripts/buildings.gd" id="9_2i728"]
-[ext_resource type="Script" uid="uid://dof5vuo3pucyl" path="res://scripts/farm.gd" id="10_o1naa"]
+[ext_resource type="Script" uid="uid://dof5vuo3pucyl" path="res://scripts/buildings/farm.gd" id="10_o1naa"]
 [ext_resource type="PackedScene" uid="uid://5xdqwf1tg7w6" path="res://scenes/buildings/spear_tower.tscn" id="11_hlqug"]
-[ext_resource type="PackedScene" uid="uid://nuuy37u6g3sj" path="res://scenes/worker.tscn" id="11_kow25"]
-[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/archer.tscn" id="11_nmw0x"]
+[ext_resource type="PackedScene" uid="uid://nuuy37u6g3sj" path="res://scenes/units/worker.tscn" id="11_kow25"]
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/units/archer.tscn" id="11_nmw0x"]
 [ext_resource type="Script" uid="uid://dp0v5fbyqd8ge" path="res://scripts/collision_shape_2d.gd" id="12_07t30"]
 [ext_resource type="Texture2D" uid="uid://56dlrej03bfs" path="res://sprites/ui.png" id="12_dabxs"]
 [ext_resource type="PackedScene" uid="uid://da2c0pa2wddkq" path="res://scenes/buildings/archer_range.tscn" id="12_qhy6v"]
@@ -963,7 +963,10 @@ polygon = PackedVector2Array(0, 0, -10, -3, -21, -11, -21, -21, -7, -27, 5, -26,
 [node name="troops2d" type="Node2D" parent="player1"]
 script = ExtResource("7_nmw0x")
 worker_price = 1
-swordsman_price = 1
+swordsman_price = 2
+archer_price = 3
+spearman_price = 4
+horseman_price = 5
 
 [node name="CharacterBody2D" parent="player1/troops2d" groups=["archers"] instance=ExtResource("11_nmw0x")]
 position = Vector2(1499, 1707)

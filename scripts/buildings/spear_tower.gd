@@ -1,4 +1,4 @@
-extends "res://scripts/farm.gd"
+extends "res://scripts/buildings/farm.gd"
 
 func _ready() -> void:
 	var troops = get_parent().get_parent().find_child("troops2d")
