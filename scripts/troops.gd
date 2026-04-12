@@ -112,7 +112,17 @@ func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 				print("worker!")
 				update_food.emit(food-worker_price)
 				build_worker.emit(self)
-				
+
+signal build_archer(troops:Node)
+func _on_archer_range_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed and something_else_entered == false:
+			#create worker if afford
+			if food >= swordsman_price:
+				print("archer!")
+				update_food.emit(food-swordsman_price)
+				build_archer.emit(self)
+
 signal build_swordsman(troops:Node)
 func _on_barrack_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -134,7 +144,7 @@ func _on_spear_tower_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 				build_spearman.emit(self)
 
 signal build_horseman(troops:Node)
-func _on_archer_range_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _on_stables_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
