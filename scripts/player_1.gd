@@ -26,42 +26,42 @@ signal increase_gold(n:int)
 func _on_berries_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
-			food += 1
-			print("food: ", food)
-			increase_food.emit(food)
+			resources[0] += 1
+			#print("food: ", food)
+			increase_food.emit(resources[0])
 
 func _on_wood_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
-			wood += 1
-			print("wood: ", wood)
-			increase_wood.emit(wood)
+			resources[1] += 1
+			#print("wood: ", wood)
+			increase_wood.emit(resources[1])
 
 
 func _on_stone_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
-			stone += 1
-			print("stone: ", stone)
-			increase_stone.emit(stone)
+			resources[2] += 1
+			#print("stone: ", stone)
+			increase_stone.emit(resources[2])
 
 
 func _on_iron_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
-			iron += 1
-			print("iron: ", iron)
-			increase_iron.emit(iron)
+			resources[3] += 1
+			#print("iron: ", iron)
+			increase_iron.emit(resources[3])
 
 
 func _on_gold_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
-			gold += 1
-			print("gold: ", gold)
-			increase_gold.emit(gold)
+			resources[4] += 1
+			#print("gold: ", gold)
+			increase_gold.emit(resources[4])
 
 
 func _on_troops_update_food(food_new: int) -> void:
-	food = food_new
-	increase_food.emit(food)
+	resources[0] = food_new
+	increase_food.emit(resources[0])

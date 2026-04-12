@@ -55,5 +55,5 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			pressed.emit(self)
 			
 		if event.double_click:
-			print("double pressed")
+			#print("double pressed")
 			double_pressed.emit(self)

@@ -43,7 +43,7 @@ func add_unit(unit:CharacterBody2D):
 
 
 func remove_all_units():
-	print("removing all troops")
+	#print("removing all troops")
 	for t in marked_troops:
 		t.remove()
 		marked_troops = []
@@ -57,7 +57,6 @@ func _on_map_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) ->
 		if event.button_index == 2 and event.pressed:
 			#print("map right clicked")
 			var coordinate = get_global_mouse_position()
-			print(coordinate)
 			var coords = get_troop_coordinates(len(marked_troops), coordinate)
 			 
 			for t in range(len(marked_troops)):
@@ -112,7 +111,7 @@ func _on_farm_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
 			if food >= worker_price:
-				print("worker!")
+				#print("worker!")
 				update_food.emit(food-worker_price)
 				build_worker.emit(self)
 
@@ -122,7 +121,7 @@ func _on_archer_range_input_event(_viewport: Node, event: InputEvent, _shape_idx
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
 			if food >= archer_price:
-				print("archer!")
+				#print("archer!")
 				update_food.emit(food-archer_price)
 				build_archer.emit(self)
 
@@ -132,7 +131,7 @@ func _on_barrack_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
 			if food >= swordsman_price:
-				print("swordsman!")
+				#print("swordsman!")
 				update_food.emit(food-swordsman_price)
 				build_swordsman.emit(self)
 
@@ -142,7 +141,7 @@ func _on_spear_tower_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
 			if food >= spearman_price:
-				print("spearman!")
+				#print("spearman!")
 				update_food.emit(food-spearman_price)
 				build_spearman.emit(self)
 
@@ -152,7 +151,7 @@ func _on_stables_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		if event.button_index == 1 and event.pressed and something_else_entered == false:
 			#create worker if afford
 			if food >= horseman_price:
-				print("horseman!")
+				#print("horseman!")
 				update_food.emit(food-horseman_price)
 				build_horseman.emit(self)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://cdorh3w62fwsa"]
+[gd_scene load_steps=99 format=4 uid="uid://cdorh3w62fwsa"]
 
 [ext_resource type="Texture2D" uid="uid://d3cmqkxouhm65" path="res://sprites/grass_godot.png" id="1_lwogq"]
 [ext_resource type="Script" uid="uid://brymljy674en7" path="res://scripts/camera_2d.gd" id="1_shna5"]
@@ -22,12 +22,13 @@
 [ext_resource type="PackedScene" uid="uid://bl0uns1is12wn" path="res://scenes/buildings/tavern.tscn" id="14_6srk1"]
 [ext_resource type="Script" uid="uid://c2b0mowdmxhck" path="res://scripts/food_count.gd" id="14_o1naa"]
 [ext_resource type="Script" uid="uid://8c1t0agvbrp3" path="res://scripts/ui.gd" id="15_bc5hy"]
-[ext_resource type="Script" uid="uid://jv8sleypen3d" path="res://scripts/wood.gd" id="15_kow25"]
+[ext_resource type="Script" uid="uid://bxag8q7abtqva" path="res://scripts/wood.gd" id="15_kow25"]
 [ext_resource type="PackedScene" uid="uid://xf4jjpg46gpd" path="res://scenes/buildings/castle.tscn" id="15_o6iju"]
 [ext_resource type="Script" uid="uid://cgw0bnypxkcaj" path="res://scripts/stone_count.gd" id="16_ay1ce"]
 [ext_resource type="Script" uid="uid://5o5e2g3sgfh5" path="res://scripts/iron_count.gd" id="17_rcnnr"]
 [ext_resource type="Script" uid="uid://dqxlwykhhxi8n" path="res://scripts/gold_count.gd" id="18_pa4lm"]
 [ext_resource type="Texture2D" uid="uid://bbirw4gwk1060" path="res://sprites/button_frame.png" id="21_ay1ce"]
+[ext_resource type="Script" uid="uid://1t8j7qei0ss5" path="res://h_box_container.gd" id="23_o6iju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhalm"]
 texture = ExtResource("1_lwogq")
@@ -1008,6 +1009,7 @@ offset_left = 437.0
 offset_top = 2.0
 offset_right = 1205.0
 offset_bottom = 19.0
+script = ExtResource("23_o6iju")
 
 [node name="gold" type="Label" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -1150,6 +1152,7 @@ region_rect = Rect2(320, -2, 64, 44)
 [connection signal="input_event" from="player1/Map/Terrain/stone" to="player1" method="_on_stone_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/iron" to="player1" method="_on_iron_input_event"]
 [connection signal="input_event" from="player1/Map/Terrain/gold" to="player1" method="_on_gold_input_event"]
+[connection signal="update_ui_resources" from="player1/Buildings" to="CanvasLayer/HBoxContainer" method="_on_buildings_update_ui_resources"]
 [connection signal="input_event" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_input_event"]
 [connection signal="spawning_done" from="player1/Buildings/farm" to="player1/troops2d" method="_on_farm_spawning_done"]
 [connection signal="build_worker" from="player1/troops2d" to="player1/Buildings/farm" method="_on_troops_build_worker"]
