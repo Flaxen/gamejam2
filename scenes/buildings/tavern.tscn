@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl0uns1is12wn"]
+
+[ext_resource type="Script" uid="uid://6mk7uhj67w11" path="res://scripts/buildings/barrack.gd" id="1_8dirj"]
+[ext_resource type="PackedScene" uid="uid://bvwnkx0splo04" path="res://scenes/units/archer.tscn" id="2_gwbas"]
+[ext_resource type="Texture2D" uid="uid://dea41hya1x83k" path="res://sprites/buildings.png" id="3_yyr65"]
+
+[node name="building" type="Area2D"]
+script = ExtResource("1_8dirj")
+worker_scene = ExtResource("2_gwbas")
+unit_grouping = "archers"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-33, 8, -14, 19, -6, 13, 1, 18, 9, 13, 17, 17, 30, 10, 20, 1, 13, -13, -2, -7, -19, -5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_yyr65")
+region_enabled = true
+region_rect = Rect2(64, -2, 64, 44)

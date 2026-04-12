@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-var target = position
+var target = global_position
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	target = position
+	target = global_position
+	
 	pass # Replace with function body.
 
 
@@ -12,12 +13,12 @@ func _process(_delta: float) -> void:
 	
 	pass
 
-func goto():
-	target = get_global_mouse_position()
+func goto(coord):
+	target = coord
 	#print ("move to pos ", target)
 	
 func _physics_process(_delta):
-	velocity = position.direction_to(target) * 10
+	velocity = global_position.direction_to(target) * 10
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	else:
@@ -25,7 +26,7 @@ func _physics_process(_delta):
 
 	# look_at(target)
 	
-	if position.distance_to(target) > 10:
+	if global_position.distance_to(target) > 10:
 		$AnimatedSprite2D.play("walk")
 		#print ("moving w velocity, ", $CharacterBody2D.velocity)
 		move_and_slide()
@@ -42,6 +43,8 @@ func remove():
 	$Line2D.visible = false
 
 signal pressed(unit:CharacterBody2D)
+signal double_pressed(unit:CharacterBody2D)
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 
@@ -52,5 +55,5 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			pressed.emit(self)
 			
 		if event.double_click:
-			#print("double clicked")
-			pass
+			#print("double pressed")
+			double_pressed.emit(self)
